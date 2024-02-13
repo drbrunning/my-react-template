@@ -1,0 +1,11 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable prettier/prettier */
+/* eslint-env node */
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    theme: {
+        extend: {},
+    },
+    plugins: ['prettier-plugin-tailwindcss'],
+};

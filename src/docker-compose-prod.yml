@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  react-app:
+    build: .
+    ports:
+      - "3000:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.react-app.rule=Host(`your-production-domain.com`)"
+      - "traefik.http.services.react-app.loadbalancer.server.port=3000"
