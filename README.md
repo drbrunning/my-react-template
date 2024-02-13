@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -48,4 +47,3 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 =======
 # my-react-template
 My React template for front-end applications.
->>>>>>> c94828d6ee1a21f20b7df3d0f8675b8f5ad5fecc
