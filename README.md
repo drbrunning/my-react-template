@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# Enhanced Create React App Template
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Added Resources
+
+The following libraries are installed as per package.json:
+
+ - React
+ - TypeScript
+ - React-Dom
+ - React-Router-Dom
+ - Redux
+ - React-Redux
+ - Redux-Toolkit
+ - Redux-Saga
+ - Axios
+ - TailwindCSS
+ - Prettier
+ - ESLint
 
 ## Available Scripts
 
