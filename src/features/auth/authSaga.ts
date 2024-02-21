@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { LoginAction } from './authActions';
 import { LoginResponse } from './authResponse';
 import {
@@ -9,12 +9,13 @@ import {
     PutEffect,
 } from 'redux-saga/effects';
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
+import axiosInstance from '../../api/AxiosInstance';
 
 // Define the return type of the API call function
 const loginUser = (
     payload: LoginAction['payload']
 ): Promise<AxiosResponse<LoginResponse>> => {
-    return axios.post('/api/auth/login', payload);
+    return axiosInstance.post('/api/auth/login', payload);
 };
 
 function* login(
