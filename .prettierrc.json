@@ -2,6 +2,10 @@
     "singleQuote": true,
     "trailingComma": "es5",
     "tabWidth": 4,
+    "useTabs": false,
     "semi": true,
-    "endOfLine": "crlf"
+    "endOfLine": "crlf",
+    "extends": ["plugin:prettier/recommended"]
+      
 }
+

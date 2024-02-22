@@ -19,7 +19,8 @@
             {
                 "endOfLine": "crlf",
                 "singleQuote": true,
-                "parser": "flow"
+                "parser": "flow",
+                "indent": 4
             }
         ],
         "indent": ["error", 4],
@@ -49,9 +50,9 @@
             }
         },
         {
-            "files": ["webpack.config.js"],
-            "rules": {
-                "rule-name": "off"
+            "files": ["webpack.config.js", "webpack.*.js"],
+            "env": {
+                "node": true
             }
         },
         {

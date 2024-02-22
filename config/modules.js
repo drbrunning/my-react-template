@@ -43,6 +43,7 @@ function getAdditionalModulePaths(options = {}) {
     // Otherwise, throw an error.
     throw new Error(
         chalk.red.bold(
+            // eslint-disable-next-line quotes
             "Your project's `baseUrl` can only be set to `src` or `node_modules`." +
                 ' Create React App does not support other values at this time.'
         )

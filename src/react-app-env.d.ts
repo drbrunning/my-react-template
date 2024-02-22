@@ -3,6 +3,7 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 
+// eslint-disable-next-line prettier/prettier
 declare namespace NodeJS {
     interface ProcessEnv {
         readonly NODE_ENV: 'development' | 'production' | 'test';
