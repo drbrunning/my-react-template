@@ -1,19 +1,19 @@
 'use strict';
 
-import { existsSync } from 'fs';
-import evalSourceMapMiddleware from 'react-dev-utils/evalSourceMapMiddleware';
-import noopServiceWorkerMiddleware from 'react-dev-utils/noopServiceWorkerMiddleware';
-import ignoredFiles from 'react-dev-utils/ignoredFiles';
-import redirectServedPath from 'react-dev-utils/redirectServedPathMiddleware';
-import { appPublic, publicUrlOrPath, appSrc, proxySetup } from './paths';
-import getHttpsConfig from './getHttpsConfig';
+const fs = require('fs');
+const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
+const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
+const ignoredFiles = require('react-dev-utils/ignoredFiles');
+const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
+const paths = require('./paths');
+const getHttpsConfig = require('./getHttpsConfig');
 
 const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
 const sockPort = process.env.WDS_SOCKET_PORT;
 
-export default function (proxy, allowedHost) {
+module.exports = function createDevServerConfig(proxy, allowedHost) {
     const disableFirewall =
         !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true';
     return {
@@ -58,15 +58,15 @@ export default function (proxy, allowedHost) {
             // for files like `favicon.ico`, `manifest.json`, and libraries that are
             // for some reason broken when imported through webpack. If you just want to
             // use an image, put it in `src` and `import` it from JavaScript instead.
-            directory: appPublic,
-            publicPath: [publicUrlOrPath],
+            directory: paths.appPublic,
+            publicPath: [paths.publicUrlOrPath],
             // By default files from `contentBase` will not trigger a page reload.
             watch: {
                 // Reportedly, this avoids CPU overload on some systems.
                 // https://github.com/facebook/create-react-app/issues/293
                 // src/node_modules is not ignored to support absolute imports
                 // https://github.com/facebook/create-react-app/issues/1065
-                ignored: ignoredFiles(appSrc),
+                ignored: ignoredFiles(paths.appSrc),
             },
         },
         client: {
@@ -88,7 +88,7 @@ export default function (proxy, allowedHost) {
             // we specified in the webpack config. When homepage is '.', default to serving
             // from the root.
             // remove last slash so user can land on `/test` instead of `/test/`
-            publicPath: publicUrlOrPath.slice(0, -1),
+            publicPath: paths.publicUrlOrPath.slice(0, -1),
         },
 
         https: getHttpsConfig(),
@@ -97,7 +97,7 @@ export default function (proxy, allowedHost) {
             // Paths with dots should still use the history fallback.
             // See https://github.com/facebook/create-react-app/issues/387.
             disableDotRule: true,
-            index: publicUrlOrPath,
+            index: paths.publicUrlOrPath,
         },
         // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
         proxy,
@@ -107,21 +107,23 @@ export default function (proxy, allowedHost) {
             // This lets us fetch source contents from webpack for the error overlay
             devServer.app.use(evalSourceMapMiddleware(devServer));
 
-            if (existsSync(proxySetup)) {
+            if (fs.existsSync(paths.proxySetup)) {
                 // This registers user provided middleware for proxy reasons
-                require(proxySetup)(devServer.app);
+                require(paths.proxySetup)(devServer.app);
             }
         },
         onAfterSetupMiddleware(devServer) {
             // Redirect to `PUBLIC_URL` or `homepage` from `package.json` if url not match
-            devServer.app.use(redirectServedPath(publicUrlOrPath));
+            devServer.app.use(redirectServedPath(paths.publicUrlOrPath));
 
             // This service worker file is effectively a 'no-op' that will reset any
             // previous service worker registered for the same host:port combination.
             // We do this in development to avoid hitting the production cache if
             // it used the same host and port.
             // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
-            devServer.app.use(noopServiceWorkerMiddleware(publicUrlOrPath));
+            devServer.app.use(
+                noopServiceWorkerMiddleware(paths.publicUrlOrPath)
+            );
         },
     };
-}
+};
