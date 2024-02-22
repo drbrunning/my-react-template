@@ -18,12 +18,11 @@ const loginUser = (
     return axiosInstance.post('/api/auth/login', payload);
 };
 
-function* login(
-    action: LoginAction
-): Generator<
+function* login(action: LoginAction): Generator<
     CallEffect<AxiosResponse<LoginResponse>> | PutEffect,
     void,
-    AxiosResponse<LoginResponse>,
+    // eslint-disable-next-line prettier/prettier
+    AxiosResponse<LoginResponse>
 > {
     try {
         const response: AxiosResponse<LoginResponse> = yield call(
