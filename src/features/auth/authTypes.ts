@@ -6,10 +6,10 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 // src/store/reducers/authReducer.ts
 export type AuthState = {
-    isAuthenticated: boolean;
-    token: string | null;
-    loading: boolean;
-    error: string | null;
+    isAuthenticated: boolean,
+    token: string | null,
+    loading: boolean,
+    error: string | null,
 };
 
 // Update to include specific action types
