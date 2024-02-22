@@ -6,18 +6,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The following libraries are installed as per package.json:
 
- - React
- - TypeScript
- - React-Dom
- - React-Router-Dom
- - Redux
- - React-Redux
- - Redux-Toolkit
- - Redux-Saga
- - Axios
- - TailwindCSS
- - Prettier
- - ESLint
+-   React
+-   TypeScript
+-   React-Dom
+-   React-Router-Dom
+-   Redux
+-   React-Redux
+-   Redux-Toolkit
+-   Redux-Saga
+-   Axios
+-   TailwindCSS
+-   Prettier
+-   ESLint
 
 ## Available Scripts
 
@@ -60,7 +60,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-=======
+# To learn React, check out the [React documentation](https://reactjs.org/).
+
 # my-react-template
+
 My React template for front-end applications.

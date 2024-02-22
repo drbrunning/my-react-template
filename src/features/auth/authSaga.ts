@@ -23,7 +23,7 @@ function* login(
 ): Generator<
     CallEffect<AxiosResponse<LoginResponse>> | PutEffect,
     void,
-    AxiosResponse<LoginResponse>
+    AxiosResponse<LoginResponse>,
 > {
     try {
         const response: AxiosResponse<LoginResponse> = yield call(
