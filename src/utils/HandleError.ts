@@ -19,7 +19,7 @@ interface ErrorResponse {
  * @param showToast If true, display the error message using react-hot-toast.
  * @returns The extracted error message.
  */
-export const extractErrorMessage = (
+export const extractSagaErrorMessage = (
     error: unknown,
     defaultMessage = 'An unknown error occurred'
 ): string => {
@@ -38,3 +38,12 @@ export const extractErrorMessage = (
     }
     return defaultMessage;
 };
+
+export function extractHookErrorMessage(error: unknown): string {
+    if (typeof error === 'string') {
+        return error;
+    } else if (error instanceof Error) {
+        return error.message;
+    }
+    return 'An unknown error occurred';
+}
