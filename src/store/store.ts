@@ -17,7 +17,7 @@ export const makeStore = (preloadedState?: Partial<RootState>) => {
         // and other useful features of `rtk-query`.
         middleware: (getDefaultMiddleware) => {
             return getDefaultMiddleware({ thunk: false }).concat(
-                sagaMiddleware
+                sagaMiddleware,
             );
         },
         preloadedState,

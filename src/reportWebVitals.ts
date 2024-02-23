@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { ReportHandler } from 'web-vitals';
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {
@@ -10,7 +9,7 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
                 getFCP(onPerfEntry);
                 getLCP(onPerfEntry);
                 getTTFB(onPerfEntry);
-            }
+            },
         );
     }
 };
