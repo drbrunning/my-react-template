@@ -25,7 +25,7 @@ const authSlice = createSlice({
         },
         loginSuccess: (
             state,
-            action: PayloadAction<LoginSuccessAction['payload']>
+            action: PayloadAction<LoginSuccessAction['payload']>,
         ) => {
             state.isAuthenticated = true;
             state.token = action.payload;
@@ -34,7 +34,7 @@ const authSlice = createSlice({
         },
         loginFailure: (
             state,
-            action: PayloadAction<LoginFailureAction['payload']>
+            action: PayloadAction<LoginFailureAction['payload']>,
         ) => {
             state.loading = false;
             state.error = action.payload;

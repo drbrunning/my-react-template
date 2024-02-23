@@ -14,19 +14,23 @@
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint", "react", "prettier"],
     "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "endOfLine": "crlf",
-                "singleQuote": true,
-                "parser": "flow",
-                "indent": 4
-            }
-        ],
+        "prettier/prettier": ["error", {}],
         "indent": ["error", 4],
         "linebreak-style": ["error", "windows"],
         "quotes": ["error", "single"],
-        "semi": ["error", "always"],
+        "@typescript-eslint/member-delimiter-style": [
+            "error",
+            {
+                "multiline": {
+                    "delimiter": "semi", // Use "semi" for semicolons at the end of multiline members
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "semi", // Ensure semicolons are used in single line declarations
+                    "requireLast": false
+                }
+            }
+        ],
         "jsx-quotes": ["error", "prefer-double"]
     },
     "parserOptions": {

@@ -6,7 +6,7 @@ import {
     put,
     takeLatest,
     CallEffect,
-    PutEffect,
+    PutEffect
 } from 'redux-saga/effects';
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
 import axiosInstance from '../../api/AxiosInstance';
@@ -15,7 +15,7 @@ import axiosInstance from '../../api/AxiosInstance';
 const loginUser = (
     payload: LoginAction['payload']
 ): Promise<AxiosResponse<LoginResponse>> => {
-    return axiosInstance.post('/api/auth/login', payload);
+    return axiosInstance.post('/api/login', payload);
 };
 
 function* login(action: LoginAction): Generator<
@@ -36,12 +36,12 @@ function* login(action: LoginAction): Generator<
         if (error instanceof Error) {
             yield put({
                 type: LOGIN_FAILURE,
-                payload: error.message || 'Error',
+                payload: error.message || 'Error'
             });
         } else {
             yield put({
                 type: LOGIN_FAILURE,
-                payload: 'An unknown error occurred.',
+                payload: 'An unknown error occurred.'
             });
         }
     }

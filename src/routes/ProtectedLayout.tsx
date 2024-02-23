@@ -6,7 +6,7 @@ const ProtectedLayout = () => {
     // Access both the user and isAuthenticated flag from the auth state
     //const user = useAppSelector((state) => state.auth.user);
     const isAuthenticated = useAppSelector(
-        (state) => state.auth.isAuthenticated
+        (state) => state.auth.isAuthenticated,
     );
 
     // Check for isAuthenticated instead of just user object presence

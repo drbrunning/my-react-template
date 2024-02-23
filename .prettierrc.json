@@ -6,6 +6,4 @@
     "semi": true,
     "endOfLine": "crlf",
     "extends": ["plugin:prettier/recommended"]
-      
 }
-
