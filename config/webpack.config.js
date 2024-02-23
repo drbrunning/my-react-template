@@ -28,6 +28,8 @@ const ForkTsCheckerWebpackPlugin =
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
+// Import package.json for version number.
+const packageJson = require('../package.json');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -85,6 +87,13 @@ const hasJsxRuntime = (() => {
         return false;
     }
 })();
+
+const banner = `
+My Project ${packageJson.version}
+(c) ${new Date().getFullYear()} My Company Name. All Rights Reserved.
+For use by authorized parties only.
+Developed by: Developer Name
+`;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -775,6 +784,11 @@ module.exports = function (webpackEnv) {
                         },
                     },
                 }),
+            new webpack.BannerPlugin({
+                banner: banner,
+                raw: true, // This is important if you want the comment to be treated as a raw string including new lines etc.
+                entryOnly: true, // This adds the banner only to the entry chunks
+            }),
         ].filter(Boolean),
         // Turn off performance processing because we utilize
         // our own hints via the FileSizeReporter
