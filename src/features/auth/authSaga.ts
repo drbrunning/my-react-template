@@ -1,54 +1,52 @@
-import { AxiosResponse } from 'axios';
-import { LoginAction } from './authActions';
-import { LoginResponse } from './authResponse';
-import {
-    call,
-    put,
-    takeLatest,
-    CallEffect,
-    PutEffect
-} from 'redux-saga/effects';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
+// sagas/authSaga.ts
+import { call, put, takeLatest } from 'redux-saga/effects';
 import axiosInstance from '../../api/AxiosInstance';
+import {
+    loginSuccess,
+    loginFailure,
+    logoutSuccess,
+    logoutFailure,
+} from '../auth/authActions';
+import { LOGIN_REQUEST, LOGOUT_REQUEST, LoginRequestAction } from './authTypes';
+import { LoginResponse } from './authResponse';
+import { extractErrorMessage } from '../../utils/HandleError';
+import { toast } from 'react-hot-toast';
 
-// Define the return type of the API call function
-const loginUser = (
-    payload: LoginAction['payload']
-): Promise<AxiosResponse<LoginResponse>> => {
-    return axiosInstance.post('/api/login', payload);
-};
-
-function* login(action: LoginAction): Generator<
-    CallEffect<AxiosResponse<LoginResponse>> | PutEffect,
-    void,
-    // eslint-disable-next-line prettier/prettier
-    AxiosResponse<LoginResponse>
-> {
+function* loginSaga(action: LoginRequestAction) {
     try {
-        const response: AxiosResponse<LoginResponse> = yield call(
-            loginUser,
+        // Specify the response type for better type-checking
+        const response: { data: LoginResponse } = yield call(
+            axiosInstance.post,
+            '/api/login',
             action.payload
         );
 
-        yield put({ type: LOGIN_SUCCESS, payload: response.data });
-        // Navigate or save token here as needed
-    } catch (error: unknown) {
-        if (error instanceof Error) {
-            yield put({
-                type: LOGIN_FAILURE,
-                payload: error.message || 'Error'
-            });
-        } else {
-            yield put({
-                type: LOGIN_FAILURE,
-                payload: 'An unknown error occurred.'
-            });
-        }
+        // Assuming you want to store user details on login success
+        yield put(loginSuccess(response.data.user));
+
+        // Optionally, show a success toast message
+        toast.success('Logged in successfully');
+    } catch (error) {
+        // Consider a more specific error handling strategy
+        const message = extractErrorMessage(error, 'Login failed');
+        yield put(loginFailure(message));
+        toast.error(message);
     }
 }
 
-function* authSaga() {
-    yield takeLatest(LOGIN_REQUEST, login);
+function* logoutSaga() {
+    try {
+        yield call(axiosInstance.post, '/api/logout');
+        yield put(logoutSuccess());
+        toast.success('Logged out successfully');
+    } catch (error) {
+        const message = extractErrorMessage(error, 'Logout failed');
+        yield put(logoutFailure(message));
+        toast.error(message);
+    }
 }
 
-export default authSaga;
+export default function* watchAuthSaga() {
+    yield takeLatest(LOGIN_REQUEST, loginSaga);
+    yield takeLatest(LOGOUT_REQUEST, logoutSaga);
+}

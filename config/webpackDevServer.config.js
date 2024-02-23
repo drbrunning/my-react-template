@@ -122,7 +122,7 @@ module.exports = function createDevServerConfig(proxy, allowedHost) {
             // it used the same host and port.
             // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
             devServer.app.use(
-                noopServiceWorkerMiddleware(paths.publicUrlOrPath),
+                noopServiceWorkerMiddleware(paths.publicUrlOrPath)
             );
         },
     };
