@@ -1,4 +1,3 @@
-import { createReducer } from '@reduxjs/toolkit';
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
