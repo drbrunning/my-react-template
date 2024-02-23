@@ -4,9 +4,9 @@ import { useAppSelector } from '../hooks/hooks';
 import { Navigate } from 'react-router-dom';
 
 const DefaultLayout = () => {
-    const token = useAppSelector((state) => state.auth.token);
+    const user = useAppSelector((state) => state.auth.user);
 
-    if (token) {
+    if (user === null) {
         return <Navigate replace to={'/'} />;
     }
 

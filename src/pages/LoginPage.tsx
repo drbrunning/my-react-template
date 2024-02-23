@@ -81,7 +81,7 @@ const LoginPage = () => {
                     loginRequest({
                         username: email,
                         password,
-                    }),
+                    })
                 );
             } catch (e: any) {
                 toast.error(e.message);

@@ -8,14 +8,13 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
-        "prettier",
         "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "react", "prettier"],
+    "plugins": ["@typescript-eslint", "react"],
     "rules": {
         "prettier/prettier": ["error", {}],
-        "indent": ["error", 4],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
         "linebreak-style": ["error", "windows"],
         "quotes": ["error", "single"],
         "@typescript-eslint/member-delimiter-style": [

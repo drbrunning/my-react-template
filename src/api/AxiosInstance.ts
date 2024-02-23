@@ -4,7 +4,7 @@ import { BACKEND_BASE_URL } from '../features/auth/constants';
 // Create an axios instance
 const axiosInstance = axios.create({
     baseURL: BACKEND_BASE_URL,
-    withCredentials: true
+    withCredentials: true,
 });
 
 axiosInstance.interceptors.response.use(
