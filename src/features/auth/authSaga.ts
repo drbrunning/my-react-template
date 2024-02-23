@@ -9,7 +9,7 @@ import {
 } from '../auth/authActions';
 import { LOGIN_REQUEST, LOGOUT_REQUEST, LoginRequestAction } from './authTypes';
 import { LoginResponse } from './authResponse';
-import { extractErrorMessage } from '../../utils/HandleError';
+import { extractSagaErrorMessage } from '../../utils/HandleError';
 import { toast } from 'react-hot-toast';
 
 function* loginSaga(action: LoginRequestAction) {
@@ -28,7 +28,7 @@ function* loginSaga(action: LoginRequestAction) {
         toast.success('Logged in successfully');
     } catch (error) {
         // Consider a more specific error handling strategy
-        const message = extractErrorMessage(error, 'Login failed');
+        const message = extractSagaErrorMessage(error, 'Login failed');
         yield put(loginFailure(message));
         toast.error(message);
     }
@@ -40,7 +40,7 @@ function* logoutSaga() {
         yield put(logoutSuccess());
         toast.success('Logged out successfully');
     } catch (error) {
-        const message = extractErrorMessage(error, 'Logout failed');
+        const message = extractSagaErrorMessage(error, 'Logout failed');
         yield put(logoutFailure(message));
         toast.error(message);
     }
