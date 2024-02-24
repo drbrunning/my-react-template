@@ -89,10 +89,10 @@ const hasJsxRuntime = (() => {
 })();
 
 const banner = `
-My Project ${packageJson.version}
-(c) ${new Date().getFullYear()} My Company Name. All Rights Reserved.
-For use by authorized parties only.
-Developed by: Developer Name
+// My-React-Template ${packageJson.version}
+// (c) ${new Date().getFullYear()} Dylan Brunning. All Rights Reserved.
+// For use by authorized parties only.
+// Developed by: Dylan Brunning
 `;
 
 // This is the production and development configuration.
