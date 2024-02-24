@@ -70,7 +70,7 @@ function authReducer(state = initialState, action: AuthActionTypes): AuthState {
             return {
                 ...state,
                 isAuthenticated: true,
-                user: action.payload, // Assuming payload contains user data
+                user: action.payload.user, // Assuming payload contains user data
                 loading: false,
                 error: null,
             };

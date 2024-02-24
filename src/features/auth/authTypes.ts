@@ -14,6 +14,11 @@ export type LoginPayload = {
     password: string;
 };
 
+export type LoginSuccessPayload = {
+    user: LoginResponse['user'];
+    tokens: LoginResponse['tokens'];
+};
+
 // Action Types
 export type LoginRequestAction = {
     type: typeof LOGIN_REQUEST;
@@ -22,7 +27,7 @@ export type LoginRequestAction = {
 
 export type LoginSuccessAction = {
     type: typeof LOGIN_SUCCESS;
-    payload: LoginResponse['user'];
+    payload: LoginSuccessPayload;
 };
 
 export type LoginFailureAction = {
