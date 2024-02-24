@@ -4,17 +4,16 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import Dashboard from '../pages/Dashboard';
 import DefaultLayout from './DefaultLayout';
-import ProtectedLayout from './ProtectedLayout';
+import ProtectedRoute from './ProtectedRoute';
 
 function AppRoutes() {
     return (
         <Routes>
-            <Route element={<DefaultLayout />}>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-            </Route>
-            <Route element={<ProtectedLayout />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route element={<ProtectedRoute />}>
                 <Route path="/" element={<Dashboard />} />
+                {/* Add other protected routes here */}
             </Route>
         </Routes>
     );
