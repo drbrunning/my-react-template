@@ -22,7 +22,7 @@ function* loginSaga(action: LoginRequestAction) {
         );
 
         // Assuming you want to store user details on login success
-        yield put(loginSuccess(response.data.user));
+        yield put(loginSuccess(response.data.user, response.data.tokens));
 
         // Optionally, show a success toast message
         toast.success('Logged in successfully');
