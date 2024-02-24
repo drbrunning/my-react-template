@@ -1,4 +1,3 @@
-import { LoginResponse } from './authResponse';
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
@@ -21,10 +20,11 @@ export const loginRequest = (payload: LoginPayload): LoginRequestAction => ({
 });
 
 export const loginSuccess = (
-    user: LoginResponse['user']
+    user: LoginSuccessAction['payload']['user'],
+    tokens: LoginSuccessAction['payload']['tokens']
 ): LoginSuccessAction => ({
     type: LOGIN_SUCCESS,
-    payload: user,
+    payload: { user, tokens },
 });
 
 export const loginFailure = (error: string): LoginFailureAction => ({

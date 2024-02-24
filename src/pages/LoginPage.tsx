@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-import { loginRequest } from '../features/auth/authSlice';
+import { loginRequest } from '../features/auth/authActions';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
@@ -74,18 +74,22 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // Display error message if there is one
+    useEffect(() => {
+        if (errorMessage) {
+            toast.error(errorMessage);
+        }
+    }, [errorMessage]);
+
+    // Handle Login on submit
     const handleLogin = async () => {
         if (email && password) {
-            try {
-                dispatch(
-                    loginRequest({
-                        username: email,
-                        password,
-                    })
-                );
-            } catch (e: any) {
-                toast.error(e.message);
-            }
+            dispatch(
+                loginRequest({
+                    email,
+                    password,
+                })
+            );
         } else {
             toast.error('Please fill in all fields');
         }
