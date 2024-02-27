@@ -73,6 +73,9 @@
         "workbox-webpack-plugin": "^6.4.1"
     },
     "devDependencies": {
+        "@babel/preset-env": "^7.23.9",
+        "@babel/preset-react": "^7.23.3",
+        "@babel/preset-typescript": "^7.23.3",
         "@types/react-redux": "^7.1.33",
         "@types/react-router": "^5.1.18",
         "eslint": "^8.56.0",
@@ -166,8 +169,10 @@
     },
     "babel": {
         "presets": [
-            "react-app"
+            "react-app",
+            "@babel/preset-env",
+            "@babel/preset-react",
+            "@babel/preset-typescript"
         ]
-    },
-    "proxy": "0.0.0.0:88888"
+    }
 }
