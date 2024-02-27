@@ -30,7 +30,6 @@ function* loginSaga(action: LoginRequestAction) {
         // Consider a more specific error handling strategy
         const message = extractSagaErrorMessage(error, 'Login failed');
         yield put(loginFailure(message));
-        toast.error(message);
     }
 }
 

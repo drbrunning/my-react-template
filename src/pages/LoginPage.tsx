@@ -82,7 +82,10 @@ const LoginPage = () => {
     }, [errorMessage]);
 
     // Handle Login on submit
-    const handleLogin = async () => {
+    const handleLogin = async (
+        event: React.FormEvent<HTMLFormElement>
+    ): Promise<void> => {
+        event.preventDefault();
         if (email && password) {
             dispatch(
                 loginRequest({
@@ -98,7 +101,10 @@ const LoginPage = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
             <div className="w-full max-w-xs">
-                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form
+                    className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+                    onSubmit={handleLogin}
+                >
                     <div className="flex items-center justify-center">
                         <h2 className="text-center text-2xl text-gray-900 mb-4">
                             Login
@@ -144,8 +150,7 @@ const LoginPage = () => {
                     <div className="flex items-center justify-between">
                         <button
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="button"
-                            onClick={handleLogin}
+                            type="submit"
                         >
                             Login
                         </button>
@@ -156,7 +161,7 @@ const LoginPage = () => {
                             Don&apos;t have an account? Register
                         </Link>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );
